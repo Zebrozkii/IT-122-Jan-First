@@ -1,0 +1,46 @@
+<DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        button {margin-top: 10px;}
+      </style>
+  </head>
+  <body>
+
+      <script>
+        function getDog(){
+          const dogImage= document.getElementById("dogImage");
+          const dogBreed = document.getElementById("dogBreed");
+          const dogUrl="https://dog.ceo/api/breeds/image/random";
+
+          fetch(dogUrl)
+          .then(function(response){
+            return response.json();
+          })
+          .then(function(json){
+            console.log(json);
+            var data=json.message;
+            let parts = data.split("/")
+            var breedName=parts[parts.length-2];
+            console.log(breedName);
+            dogBreed.innerHTML=breedName;
+            dogImage.src=data;
+          })
+          .catch(function(error){
+            console.log(error);
+          });
+        }
+        getDog();
+      </script>
+    <h1>Dogs</h1>
+    <a href="./">Home</a>
+    <br>
+    <button onClick="getDog()">Get Dog</button>
+    <h1 id="dogBreed">Breed</h1>
+    <img id="dogImage"/>
+  </body>
+  </html>

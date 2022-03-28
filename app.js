@@ -21,6 +21,10 @@ app.get('', (req, res) =>{
 
 app.get('/about', (req, res) => {
   res.render('about', { text: 'This is about'})
+
+});
+app.get('/dogs', (req, res) => {
+  res.render('dogs', { text: 'Dogs'})
 });
 
 //
